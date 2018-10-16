@@ -23,6 +23,7 @@ class vbyte {
 
    public:
     static void encode(std::vector<uint8_t> &out, uint32_t value) {
+        out.reserve(MAX_VBYTE_LEN);
         while (value >= 128) {
             out.push_back(0x80 | (value & 0x7f));
             value >>= 7;
@@ -34,6 +35,7 @@ class vbyte {
      * Encode a vector of values into the buffer
      */
     static void encode(std::vector<uint8_t> &out, const std::vector<uint32_t> &in) {
+        out.reserve(in.size() * MAX_VBYTE_LEN);
         for (auto &&value : in) {
             encode(out, value);
         }
