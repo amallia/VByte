@@ -41,10 +41,12 @@ class vbyte {
         }
     }
 
+    static const uint8_t *decode(std::vector<uint32_t> &out, const uint8_t *in, size_t n) {}
+
     /*
      * Decode
      */
-    static const void decode(std::vector<uint32_t> &out, const std::vector<uint8_t> &in) {
+    static void decode(std::vector<uint32_t> &out, const std::vector<uint8_t> &in) {
         size_t n = 0;
         while (in.size() - n >= MAX_VBYTE_LEN) {
             uint8_t  c     = in[n];
@@ -55,7 +57,7 @@ class vbyte {
                 continue;
             }
 
-            c = in[n+1];
+            c = in[n + 1];
             value |= (c & 0x7F) << 7;
             if (c < 128) {
                 out.push_back(value);
@@ -63,7 +65,7 @@ class vbyte {
                 continue;
             }
 
-            c = in[n+2];
+            c = in[n + 2];
             value |= (c & 0x7F) << 14;
             if (c < 128) {
                 out.push_back(value);
@@ -71,7 +73,7 @@ class vbyte {
                 continue;
             }
 
-            c = in[n+3];
+            c = in[n + 3];
             value |= (c & 0x7F) << 21;
             if (c < 128) {
                 out.push_back(value);
@@ -79,7 +81,7 @@ class vbyte {
                 continue;
             }
 
-            c = in[n+4];
+            c = in[n + 4];
             value |= (c & 0x7F) << 28;
             if (c < 128) {
                 out.push_back(value);
@@ -90,7 +92,7 @@ class vbyte {
         while (n < in.size()) {
             size_t   shift = 0;
             uint32_t value = 0;
-            while(true){
+            while (true) {
                 uint8_t c = in[n];
                 value |= (c & 0x7f) << shift;
                 shift += 7;
