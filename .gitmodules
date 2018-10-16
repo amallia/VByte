@@ -4,6 +4,6 @@
 [submodule "external/benchmark"]
 	path = external/benchmark
 	url = git@github.com:google/benchmark.git
-[submodule "external/-f"]
+[submodule "external/benchmark"]
 	path = external/benchmark
 	url = https://github.com/google/benchmark.git
