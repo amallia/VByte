@@ -6,7 +6,7 @@ if (NOT CMAKE_BUILD_TYPE)
 endif()
 MESSAGE( STATUS "CMAKE_BUILD_TYPE: " ${CMAKE_BUILD_TYPE} )
 
-project(vbyte)
+project(VByte)
 
 if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
     if (CXX_COMPILER_VERSION VERSION_LESS 4.7)
@@ -27,8 +27,8 @@ endif()
 add_subdirectory(external)
 
 include_directories(include)
-add_library(vbyte INTERFACE)
-target_include_directories(vbyte INTERFACE
+add_library(VByte INTERFACE)
+target_include_directories(VByte INTERFACE
     $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
 )
 
